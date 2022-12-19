@@ -7,4 +7,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+<<<<<<< HEAD
+=======
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+    </ItemGroup>
+
+>>>>>>> e901e74 (Initial commit)
 </Project>
