@@ -1,44 +1,37 @@
-<<<<<<< HEAD
-﻿namespace EffectiveStopWatch;
-
-public class ValueStopwatch
-{
-    
-=======
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using BenchmarkDotNet.Attributes;
 
-namespace EffectiveStopWatch;
-
-[MemoryDiagnoser()]
-public class ValueStopwatch
+namespace EffectiveStopWatch
 {
-    [Benchmark]
-    public TimeSpan OldLoop()
+    [MemoryDiagnoser()]
+    public class ValueStopwatch
     {
-        var sw = Stopwatch.StartNew();
-        for (var i = 0; i < 500; i++)
+        [Benchmark]
+        public TimeSpan OldLoop()
         {
-            DoSomething();
+            var sw = Stopwatch.StartNew();
+            for (var i = 0; i < 500; i++)
+            {
+                DoSomething();
+            }
+
+            return sw.Elapsed;
         }
 
-        return sw.Elapsed;
-    }
-
-    [Benchmark]
-    public TimeSpan NewLoop()
-    {
-        var ts = Stopwatch.GetTimestamp();
-        for (var i = 0; i < 500; i++)
+        [Benchmark]
+        public TimeSpan NewLoop()
         {
-            DoSomething();
+            var ts = Stopwatch.GetTimestamp();
+            for (var i = 0; i < 500; i++)
+            {
+                DoSomething();
+            }
+
+            return Stopwatch.GetElapsedTime(ts);
         }
 
-        return Stopwatch.GetElapsedTime(ts);
+        private void DoSomething()
+        {
+        }
     }
-
-    private void DoSomething()
-    {
-    }
->>>>>>> e901e74 (Initial commit)
 }
